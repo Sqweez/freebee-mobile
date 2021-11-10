@@ -28,7 +28,7 @@ const WriteOffScreen = (props: any) => {
 
     let date = props.route.params.created_at;
 
-    date = date.split('T');
+    date = date.split(' ');
     const _date = date[0].split('-').reverse().join('.');
     const time = date[1].split('.')[0]
 
@@ -37,8 +37,7 @@ const WriteOffScreen = (props: any) => {
         setLoad(true);
         try {
             const response = await api.qrWriteOff(props.route.params.id);
-            console.log(response);
-            Alert.alert('Успешно', `С вашего баланса списано ${props.route.params.amount} freebee!`, [
+            Alert.alert('Успешно', `С вашего баланса списано ${response.data.qr.amount}!`, [
                 {
                     text: 'Закрыть',
                     onPress: () => navigate('HomeScreen')

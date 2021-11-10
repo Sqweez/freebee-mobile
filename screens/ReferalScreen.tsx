@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Share, StyleSheet } from 'react-native';
 import Layout from "../components/Layout";
 import Bold from "../components/Bold";
 import {Ionicons} from "@expo/vector-icons";
@@ -8,6 +8,7 @@ import HTML from "react-native-render-html";
 import useQuery from "../hooks/useQuery";
 import api from "../api/api";
 import {PersonalInfo} from "../types";
+import GradientButton from "../components/GradientButton";
 
 const ReferalScreen = () => {
     const [loading, info, error, callback] = useQuery<PersonalInfo>('client/info')
@@ -22,6 +23,12 @@ const ReferalScreen = () => {
         })();
     }, []);
 
+    const onShare = () => {
+        const response = Share.share({
+            message: 'Мой промокод в Frebee: ' + info?.promocode.promocode,
+        })
+    }
+
     return (
         <Layout title="Ваш промокод">
             <View style={styles.rule}>
@@ -35,6 +42,9 @@ const ReferalScreen = () => {
                     <Bold>Ваш промокод: { info?.promocode.promocode }</Bold>
                 </View>
                 {rules.length > 0 && <HTML source={{ html: rules }} />}
+                <GradientButton onPress={onShare}>
+                    Поделиться
+                </GradientButton>
             </View>
         </Layout>
     );

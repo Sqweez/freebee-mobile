@@ -55,20 +55,9 @@ const ScannerScreen = () => {
         if (qrData) {
             if (qrData.hasOwnProperty('type') && qrData.type == 'write_off_qr') {
                 // @ts-ignore
-                console.log(qrData);
-                if (qrData.amount > info?.balance ) {
-                    alertText = 'На вашем балансе не достаточно средств!';
-                    Alert.alert(alertTitle, alertText, [
-                        {
-                            text: alertCloseText,
-                            onPress: onAlertClose,
-                        },
-                    ])
-                    setScanned(false);
-                    return;
-                }
-                setScanned(false);
+                setScanned(true);
                 navigate('WriteOffScreen', qrData)
+                setScanned(false);
                 return true;
             }
 

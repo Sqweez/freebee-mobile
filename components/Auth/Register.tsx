@@ -183,7 +183,7 @@ const Register = () => {
                                 value={values.promocode}
                                 style={styles.input}
                                 placeholder="Промокод"
-                                left={<TextInput.Icon name="email-outline" />}
+                                left={<TextInput.Icon name="barcode-scan" />}
                                 error={!!errors.promocode && touched.promocode}
                             />
                         </FormGroup>

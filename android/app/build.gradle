@@ -135,8 +135,8 @@ android {
         applicationId 'freebee.kz'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion 30
-        versionCode 18
-        versionName '11'
+        versionCode 22
+        versionName '14'
     }
     splits {
         abi {
